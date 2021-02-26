@@ -1,0 +1,1 @@
+# PyTorch_MNIST-OpenVINO_cpp
