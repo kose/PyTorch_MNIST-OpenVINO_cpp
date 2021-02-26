@@ -13,15 +13,6 @@ project(${EXE})
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
-
-# for default:2021.1
-if (EXISTS /opt/intel/openvino/inference_engine/external/tbb/cmake)
-  set(TBB_DIR /opt/intel/openvino/inference_engine/external/tbb/cmake)
-endif()
-if (EXISTS /usr/local/deployment_tools/inference_engine/external/tbb/cmake)
-  set(TBB_DIR /usr/local/deployment_tools/inference_engine/external/tbb/cmake)
-endif()
-
 find_package(InferenceEngine 2.0 REQUIRED)
 find_package(ngraph REQUIRED)
 find_package(OpenCV 4.1 REQUIRED)
@@ -63,7 +54,7 @@ add_executable (${EXE} ${SOURCE_FILES})
 target_link_libraries (${EXE} PRIVATE
   ${OpenCV_LIBS}
   inference_engine inference_engine_legacy
-  tbb gflags zmq pthread
+  gflags
 )
 
 
