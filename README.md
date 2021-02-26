@@ -31,5 +31,5 @@ accuracy: 0.9617
 ## environment
 
 - MacOS Big Sur (Intel and Apple Silion)
-- official: OpenVINO 2021.2
+- official: OpenVINO 2021.2 (Python3.7)
 - build myself: [Apple Silicon(M1): build PyTorch-master, OpenVINO-2021.2, OpenCV-4.5.1-openvino](https://qiita.com/kose3/items/2863791559cad7a3932f)
