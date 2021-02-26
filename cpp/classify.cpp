@@ -17,15 +17,15 @@ using std::endl;
 
 
 ///
-/// ポーズ認識クラス
+/// MNIST 数字クラス分類
 ///
 ///
-class PoseRecognition {
+class MNISTClassification {
 
 public:
 
   // コンストラクタ
-  PoseRecognition(InferenceEngine::Core& ie, std::string modeldir, std::string device):
+  MNISTClassification(InferenceEngine::Core& ie, std::string modeldir, std::string device):
     ie(ie), insize(28 * 28), outsize(10)
   {
     // --------------------------- 1. Load inference engine instance -------------------------------------
@@ -65,7 +65,7 @@ public:
   }
 
   // デストラクタ
-  virtual ~PoseRecognition() {
+  virtual ~MNISTClassification() {
     delete[] result;
   }
 
@@ -126,7 +126,7 @@ private:
 };
 
 
-
+
 std::vector<std::string> split(std::string& input, char delimiter)
 {
   std::istringstream stream(input);
@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 
     InferenceEngine::Core ie;   // 推論コア
 
-    PoseRecognition pr(ie, FLAGS_m, FLAGS_d);
+    MNISTClassification mc(ie, FLAGS_m, FLAGS_d);
 
     //
     if (FLAGS_m.empty() || FLAGS_i.empty()) {
@@ -186,11 +186,11 @@ int main(int argc, char *argv[])
         mnistdata[i - 1] = stof(strvec.at(i)) / 255.0;
       }
 
-      pr.Inference_sync(mnistdata);
+      mc.Inference_sync(mnistdata);
 
-      // pr.print_row();
+      // mc.print_row();
 
-      int pred = pr.result_class();
+      int pred = mc.result_class();
 
       if (gt == pred) {
         correct++;
