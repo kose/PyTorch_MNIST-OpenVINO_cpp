@@ -1,3 +1,6 @@
+## mode: python ##
+## #coding: utf-8 ##
+
 import os
 import torch
 import torch.optim as optim

@@ -6,8 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.multiprocessing as mp
-from torch.utils.data.sampler import Sampler
-from torchvision import datasets, transforms
 
 from mainloop import train, test
 from network import NET

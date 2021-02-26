@@ -1,4 +1,5 @@
-# -*- mode: python -*-
+## mode: python ##
+## #coding: utf-8 ##
 
 ##
 ## dataset: MNIST
@@ -59,10 +60,8 @@ if __name__ == '__main__':
     rows = 20
     
     dataset = mnist_dataset()
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size=cols*rows, shuffle=False)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=cols*rows, shuffle=True)
     data, labels = dataloader.__iter__().next()
-
-    import pdb; pdb.set_trace()
 
     print(data.shape)
     print(labels)
@@ -78,7 +77,7 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(9, 6))
     plt.imshow(figure, cmap='Greys_r')
-    plt.title("Variational AutoEncoder / MNIST")
+    plt.title("MNIST dataset")
     plt.axis("off")
     plt.subplots_adjust(left=0.05, right=0.95, bottom=0.05, top=0.95)
     # plt.pause(10)
