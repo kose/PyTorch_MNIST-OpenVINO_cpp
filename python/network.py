@@ -1,5 +1,5 @@
 ## mode: python ##
-## #coding: utf-8 ##
+## coding: utf-8 ##
 
 import torch
 from torch import nn
