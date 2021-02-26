@@ -1,7 +1,8 @@
-# -*- mode: python -*-
+## mode: python ##
+## coding: utf-8 ##
 
 ##
-## dataset: 骨格データ
+## MNIST CSV dataset
 ##
 
 import os
