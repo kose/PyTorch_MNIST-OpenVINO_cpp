@@ -15,8 +15,8 @@ MNIST を PyTorch で学習、OpenVINO C++ で推論するサンプルです。
 % cd python
 % sh 00train.sh
 
-% mkdir tmp
-% cd tmp
+% mkdir build
+% cd build
 % cmake ../cpp
 % make
 

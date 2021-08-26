@@ -19,6 +19,8 @@ find_package(OpenCV 4.1 REQUIRED)
 
 add_definitions(-DTBB_SUPPRESS_DEPRECATED_MESSAGES ${FLAG_DEBUG})
 
+set(IE_ROOT_DIR ${InferenceEngine_DIR}/..)
+
 include_directories(
   ${IE_ROOT_DIR}/include
   ${CMAKE_CURRENT_SOURCE_DIR}/lib

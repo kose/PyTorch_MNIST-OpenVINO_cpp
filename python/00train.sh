@@ -44,12 +44,7 @@ OUTFILE=result/$BASENAME.xml
 
 if test $INFILE -nt $OUTFILE; then
 
-    source activate py37
-    
-    OPENVINO=openvino_2021
-    
-    export PYTHONPATH=/opt/intel/$OPENIVNO/opencv/lib/python3.7/site-packages:/opt/intel/$OPENIVNO/python/python3.7:/opt/intel/$OPENIVNO/python/python3:/opt/intel/$OPENIVNO/deployment_tools/model_optimizer:/opt/intel/$OPENIVNO/opencv/lib/python3.7/site-packages:/opt/intel/$OPENIVNO/python/python3.7:/opt/intel/$OPENIVNO/python/python3:/opt/intel/$OPENIVNO/deployment_tools/model_optimizer
-
+    OPENVINO=openvino
 
     MO=/opt/intel/$OPENVINO/deployment_tools/model_optimizer/mo_onnx.py
 

@@ -14,7 +14,7 @@ import numpy as np
 def make_csv(train, csvfile):
 
     transform = transforms.ToTensor()
-    dataset = datasets.MNIST('~/.pytorch', train=train, transform=transform)
+    dataset = datasets.MNIST('~/.pytorch', train=train, download=True, transform=transform)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=10000, shuffle=False)
     data, labels = dataloader.__iter__().next()
 
