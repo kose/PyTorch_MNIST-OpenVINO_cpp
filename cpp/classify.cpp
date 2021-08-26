@@ -38,7 +38,7 @@ public:
 
     // --------------------------- 3. Configure input & output ---------------------------------------------
     // --------------------------- input  ----------------------------------------------------
-    inputInfo = network.getInputsInfo().begin()->second;
+    auto inputInfo = network.getInputsInfo().begin()->second;
     inputName = network.getInputsInfo().begin()->first;
 
     // inputInfo->setLayout(Layout::NHWC);   // (batchsize, BGR, height, width)
@@ -46,17 +46,13 @@ public:
     inputInfo->setPrecision(InferenceEngine::Precision::FP32);
 
     // --------------------------- output  ----------------------------------------------------
-    outputInfo = network.getOutputsInfo().begin()->second;
+    auto outputInfo = network.getOutputsInfo().begin()->second;
     outputName = network.getOutputsInfo().begin()->first;
 
     outputInfo->setPrecision(InferenceEngine::Precision::FP32);
 
     // --------------------------- 4. Loading model to the device ------------------------------------------
     executableNetwork = ie->LoadNetwork(network, device);
-
-    // --------------------------- 5. Create infer request -------------------------------------------------
-    infer_request = executableNetwork.CreateInferRequest();
-
 
     cerr << inputName << " : " << outputName << endl;
     
@@ -72,17 +68,20 @@ public:
   // 推論：同期実行
   void Inference_sync(float mnistdata[])
   {
+    // --------------------------- 5. Create infer request -------------------------------------------------
+    auto inferRequest = executableNetwork.CreateInferRequest();
+    
     // --------------------------- 6. Prepare input --------------------------------------------------------
-    float* ibuffer = infer_request.GetBlob(inputName)->buffer();
+    float* ibuffer = inferRequest.GetBlob(inputName)->buffer();
 
     std::memcpy(ibuffer, mnistdata, sizeof(float) * insize);
 
     // --------------------------- 7. Do inference --------------------------------------------------------
     /* Running the request synchronously */
-    infer_request.Infer();
+    inferRequest.Infer();
 
     // --------------------------- 8. Process output ------------------------------------------------------
-    float* obuffer = infer_request.GetBlob(outputName)->buffer();
+    float* obuffer = inferRequest.GetBlob(outputName)->buffer();
 
     std::memcpy(result, obuffer, sizeof(float) * outsize);
   }
@@ -111,18 +110,15 @@ public:
     return index;
   }
   
-  const int insize;
-  const int outsize;
-  float* result;
-  
 private:
   InferenceEngine::Core* ie;
   std::string inputName;
-  InferenceEngine::InputInfo::Ptr inputInfo;
-  InferenceEngine::DataPtr outputInfo;
   std::string outputName;
   InferenceEngine::ExecutableNetwork executableNetwork;
-  InferenceEngine::InferRequest infer_request;
+
+  const int insize;
+  const int outsize;
+  float* result;
 };
 
 
